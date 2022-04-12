@@ -1,0 +1,61 @@
+#include <bits/stdc++.h>
+using namespace std;
+long long int n,m,arre[3000000],conn,cono,b,mon=100000000,c,c2,j;
+int main() {
+	cin>>m>>n;
+	for(int i=0;i<=n;i++){
+	    if(i==n){
+                b=0;
+	    }
+	    else{
+		cin>>b;
+		if(b==0){
+			if(conn<0){
+				arre[cono]=conn;
+				conn=0;
+				cono++;
+			}
+			conn++;
+		}
+		else{
+			if(conn>0){
+				arre[cono]=conn;
+				conn=0;
+				cono++;
+			}
+			conn--;
+		}}
+	}
+	arre[cono]=conn;
+	cono++;
+	for(int i=0;i<cono;i++){
+		arre[cono+i]=arre[i];
+	}
+	cono*=2;
+	for(int i=0;i<cono;i++){
+	}
+	for(int i=0;i<cono/2+1;i++){
+		j=i;
+		if(arre[i]>0){
+		while(c<m){
+		if(arre[j]>0){
+			c+=arre[j];
+		}
+		else if(arre[j]==0){
+		    break;
+		}
+		else{
+			c2-=arre[j];
+		}
+		j++;
+		}
+		if(c2<mon){
+		    mon=c2;
+		}
+			c=0;
+			c2=0;
+	}
+	}
+	cout<<mon;
+	return 0;
+}

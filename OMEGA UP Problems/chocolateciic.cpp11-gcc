@@ -1,0 +1,49 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+long long int n,maxi,r,arre[100002],ono,acum,ban,res;
+long long int bs(int ini,int fin){
+    long long int mitad=(ini+fin)/2;
+    if(ini>fin) return -1;
+    else{
+        return mitad;
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(0);cin.tie(0);
+    cin>>n;
+    for(long long int i=1;i<=n;i++){
+        cin>>arre[i];
+        if(arre[i]>maxi){
+            maxi=arre[i];
+        }
+    }
+    while(bs(ono, maxi) != -1){
+        r = bs(ono, maxi);
+        for(int i=1;i<=n;i++){
+            acum+=arre[i]-r;
+            if(acum<0){
+                ban=1;
+                break;
+            }
+        }
+        if(ban==1){
+            maxi=r-1;
+            ban=0;
+        }
+        else if(acum>=0){
+            if(acum==0){
+                cout<<r;
+                return 0;
+            }
+            if(r>res){
+                res=r;
+            }
+            ono=r+1;
+        }
+        acum=0;
+    }
+    cout<<res;
+    return 0;
+}

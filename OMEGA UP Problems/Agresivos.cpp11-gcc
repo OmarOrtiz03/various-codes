@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+long long int n,p,agarra,acum=1,maxi,arre[100002];
+using namespace std;
+bool puede(int valor){
+    for(int i=1;i<n;i++){
+        if(arre[i]-arre[agarra]>=valor){
+            acum++;
+            agarra=i;
+        }
+        if(acum==p){
+            agarra=0;
+            acum=1;
+            if(valor>maxi){
+                maxi=valor;
+            }
+            return true;
+        }
+    }
+    agarra=0;
+    acum=1;
+    return false;
+}
+int bs(int ini,int fin){
+    int mitad=(ini+fin)/2+1;
+    if(ini==fin){
+        return maxi;
+    }
+    if(puede(mitad)==true){
+        return bs(mitad,fin);
+    }
+    else if(puede(mitad)==false){
+        return bs(ini,mitad-1);
+    }
+}
+int main()
+{
+    cin>>n>>p;
+    for(int i=0;i<n;i++){
+        cin>>arre[i];
+    }
+    sort(arre,arre+n);
+    cout<<bs(arre[0],arre[n-1]);
+    return 0;
+}
